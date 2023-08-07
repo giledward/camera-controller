@@ -6,6 +6,7 @@ import mouse
 
 cap = cv2.VideoCapture(0)
 detector = cvzone.HandTrackingModule.HandDetector(maxHands=1, detectionCon=0.7)
+mode = 0
 
 mpHands = mp.solutions.hands
 hands = mpHands.Hands(static_image_mode=False,
@@ -25,7 +26,8 @@ while True:
         m = hands1[0]
         fingers = detector.fingersUp(m)
         sum = fingers.count(1)
-        print(sum)
+        mode = sum
+        print(f'you are in mode:  {mode}.')
     results = hands.process(imgRGB)
     x =results.multi_hand_landmarks
 
@@ -44,10 +46,5 @@ while True:
 
 
 
-    cv2.imshow("Image", img)
-    k = cv2.waitKey(1) & 0xFF
-    # press 'q' to exit
-    if k == ord('q'):
-        break
-    
+
     
