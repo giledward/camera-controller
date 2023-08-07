@@ -18,6 +18,12 @@ mpDraw = mp.solutions.drawing_utils
 pTime = 0
 cTime = 0
 
+def modeselector(sum):
+    print("what mode you want to use?")
+    time.sleep(1)
+    mode = sum
+
+modeselector(sum)
 while True:
     success, img = cap.read()
     imgRGB = cv2.cvtColor(img, cv2.COLOR_BGR2RGB)
@@ -26,11 +32,26 @@ while True:
         m = hands1[0]
         fingers = detector.fingersUp(m)
         sum = fingers.count(1)
-        mode = sum
-        print(f'you are in mode:  {mode}.')
+        
+    else: 
+        mode =0
     results = hands.process(imgRGB)
     x =results.multi_hand_landmarks
-
+    
+    
+    if mode == 1:
+        print("you are in mode 1")
+    elif mode == 2:
+        print("you are in mode 2")
+    elif mode == 3:
+        print("you are in mode 3")
+    elif mode == 4:
+        print("you are in mode 4")
+    elif mode == 5:
+        print("you are in mode 5")
+    else:
+        print("select a mode")
+    
     
     if results.multi_hand_landmarks:
         for handLms in results.multi_hand_landmarks:
